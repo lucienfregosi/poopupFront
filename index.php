@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	header("Access-Control-Allow-Origin: http://localhost:9000");
 
 ?>
@@ -24,7 +25,8 @@
 </head>
 
 <body>
-	
+
+<a href="lastreview.php"> Your last reviews </a>
 <div id="map"></div>
 
 </body>

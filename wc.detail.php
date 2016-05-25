@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	// On doit d'abord tester si l'on vient d'un d'une google places ou de l'api interne
 	if(isset($_POST['src_id'])){
 		if($_POST['src_id'] == 'gplaces'){
@@ -21,7 +22,7 @@
             	'src_id' => urlencode($src_id),
             	'description' => urlencode(''),
             	'wc_cnt' => urlencode($wc_cnt),
-            	'adress' => urlencode($adress),
+            	'address' => urlencode($adress),
             	'type' => urlencode($type),
             	'prix' => urlencode($prix),
             	'latitude' => urlencode($lat),
@@ -130,10 +131,11 @@
 	<label>Votre note : </label><input type="number" name="note"/></br>
 	<label>Votre review : </label><input type="text" name="comment"/></br>
 	<input type="hidden" name="wc_id" value="'.$wc_id.'"/>
-	<input type="hidden" name="user_id" value="user1"/>
+	<input type="hidden" name="user_id" value="'.$_SESSION['user_id'].'"/>
 	<input type="submit" value="Notez" />
 	</form>';
 
+	echo $wc_id;
 
 	// On veut ensuite sauvegarder les modifications 
 	// 1. Si c'est une google places, on va proposer de l'enregistrer dans la base de données
@@ -169,4 +171,5 @@
 
 		return $server_output;
     }
-?>
+
+
