@@ -1,6 +1,7 @@
 var map;
 var lat;
 var lng;
+var current_info_window;
 
 $(document).ready(function() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -15,6 +16,11 @@ $(document).ready(function() {
 
 
  getLocation();
+
+ // on va ajouter un listener sur la carte pour pouvoir créer un nouveau wc
+ google.maps.event.addListener(map, 'click', function(event) {
+   create_wc(event.latLng);
+});
 
 });
 
@@ -111,6 +117,7 @@ function getOtherWC(){
         url: url,
         dataType: 'json',
         success: function(wc_list){
+            console.log(wc_list);
             // on affiche tous les WC contenus dans notre BDD
             for(var i =0; i < wc_list.wc.length; i++){
                 // A voir comment on peut les adapter au meme format que titre type adresse note et aller chercher la note. Gestion de l'utf8 dans les scripts d'enregistrement
@@ -196,4 +203,46 @@ function addListenerGoogle(marker){
 
     });
 
+}
+
+function create_wc(location) {
+
+    if(current_info_window !== undefined){
+        current_info_window.close();
+        console.log("closing");
+    }
+
+    // Faudrait le décaler pour pas que l'info window passe juste au dessus du marker
+    var marker = new google.maps.Marker({
+        position: location, 
+        map: map
+    });
+
+
+    var html = '<div id="content"> '+
+          '<form method="POST" action="wc.create.php">' +
+         '<label> Voulez vous créer un nouveau wc ? </label>' +
+         '<input type="submit" value="yes"/>' +
+         '<input type="hidden" value="' + location.lat() +'" name="latitude" />' +
+          '<input type="hidden" value="' + location.lng() +'" name="longitude" />' +
+         '</form>' +
+         '<a id="myLink" href="#" onclick="close_info_window();">No</a>'+
+         '</div>';
+
+    // On set une info window pour demander la création de toilette ou non
+    var info_window2 = new google.maps.InfoWindow({ content : html });
+    info_window2.setPosition(location);
+    // Puis on lui demande de s'ouvrir sur notre carte
+    info_window2.open(map);
+
+    current_info_window = info_window2;
+
+    console.log(location.lat());
+
+}
+
+function close_info_window(){
+
+    // On ferme l'info window
+    current_info_window.close();
 }

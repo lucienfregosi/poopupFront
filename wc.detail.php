@@ -127,15 +127,21 @@
 	}
 
 	// HTML pour ajouter note review. A voir comment gérer le user id (avec une variable de session mais attendre d'avoir set le login)
-	echo '<form action = "http://54.218.31.103:5555/insertreview" method = "POST">
+	/*echo '<form action = "http://54.218.31.103:5555/insertreview" method = "POST">
+	<label>Votre note : </label><input type="number" name="note"/></br>
+	<label>Votre review : </label><input type="text" name="comment"/></br>
+	<input type="hidden" name="wc_id" value="'.$wc_id.'"/>
+	<input type="hidden" name="user_id" value="'.$_SESSION['user_id'].'"/>
+	<input type="submit" value="Notez" />
+	</form>';*/
+
+	echo '<form action = "wc.edit.php" method = "POST">
 	<label>Votre note : </label><input type="number" name="note"/></br>
 	<label>Votre review : </label><input type="text" name="comment"/></br>
 	<input type="hidden" name="wc_id" value="'.$wc_id.'"/>
 	<input type="hidden" name="user_id" value="'.$_SESSION['user_id'].'"/>
 	<input type="submit" value="Notez" />
 	</form>';
-
-	echo $wc_id;
 
 	// On veut ensuite sauvegarder les modifications 
 	// 1. Si c'est une google places, on va proposer de l'enregistrer dans la base de données
