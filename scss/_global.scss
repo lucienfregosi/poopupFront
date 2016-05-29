@@ -3,12 +3,14 @@ body {
   font-size: 16px;
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 html {
   background-color: $cap!important;
 }
 body {
   color: $gray!important;
+  height: 100%;
   font-family: $galaxie;
   -webkit-font-smoothing: antialiased;
 
@@ -21,6 +23,8 @@ body {
     width: 100%;
   };
 }
+
+#map { height: 100%; }
 
 a {
   color: $gray;
@@ -90,15 +94,6 @@ h3 { font-size: 1.17em; }
 h4 { font-size: 1.12em; }
 h5 { font-size: .83em; }
 h6 { font-size: .75em; }
-
-ul {
-  text-indent: 0;
-
-  li {
-    display: inline;
-    list-style-type: none;
-  }
-}
 
 button, .button {
   @extend %button;

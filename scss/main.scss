@@ -60,36 +60,34 @@ $button-hover:  #01579B;
 $icon-color:    #FFF;
 $cap:           gray;
 
-@font-face {
-  font-family: 'Galaxie';
-  src: url('Copernicus-Book.eot') format('embedded-opentype'),
-       url('Copernicus-Book.woff') format('woff'),
-       url('GT-Pressura-Mono-Light.ttf') format('truetype');
-  font-weight: lighter;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-}
-
-@font-face {
-  font-family: 'GT Pressura';
-  src: url('GT-Pressura-Mono-Light.eot');
-  src: url('GT-Pressura-Mono-Light.woff') format('woff'),
-       url('GT-Pressura-Mono-Light.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-}
-
 $galaxie: 'Galaxie', arial, sans-serif;
 $pressura-light: 'GT Pressura', arial, sans-serif;
 
 %h1 {
   font-family: $galaxie;
-  font-size: 22px;
+  font-size: 40px;
   line-height: 30px;
+  color: $black;
 
   @include breakpoint(tablet) {
-    font-size: 32px;
+    font-size: 40px;
+    line-height: 42px;
+  }
+
+  @include breakpoint(desktop) {
+    font-size: 48px;
+    line-height: 58px;
+  }
+}
+
+%h1white {
+  font-family: $galaxie;
+  font-size: 70px;
+  line-height: 30px;
+  color: $white;
+
+  @include breakpoint(tablet) {
+    font-size: 70px;
     line-height: 42px;
   }
 
@@ -106,6 +104,23 @@ $pressura-light: 'GT Pressura', arial, sans-serif;
 
   @include breakpoint(tablet) {
     font-size: 22px;
+    line-height: 30px;
+  }
+
+  @include breakpoint(desktop) {
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+}
+%h2white {
+  font-family: $galaxie;
+  font-size: 18px;
+  line-height: 24px;
+  color: $white;
+
+  @include breakpoint(tablet) {
+    font-size: 30px;
     line-height: 30px;
   }
 
@@ -192,12 +207,14 @@ body {
   font-size: 16px;
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 html {
   background-color: $cap!important;
 }
 body {
   color: $gray!important;
+  height: 100%;
   font-family: $galaxie;
   -webkit-font-smoothing: antialiased;
 
@@ -210,6 +227,8 @@ body {
     width: 100%;
   };
 }
+
+#map { height: 100%; }
 
 a {
   color: $gray;
@@ -279,15 +298,6 @@ h3 { font-size: 1.17em; }
 h4 { font-size: 1.12em; }
 h5 { font-size: .83em; }
 h6 { font-size: .75em; }
-
-ul {
-  text-indent: 0;
-
-  li {
-    display: inline;
-    list-style-type: none;
-  }
-}
 
 button, .button {
   @extend %button;
@@ -390,5 +400,45 @@ header {
     height: auto;
     margin-left: -100px;
   }
+}
+
+.slider-menu {
+  position: fixed;
+  width: 80%;
+  height: 100%;
+  background-color: $black;
+  z-index: 3;
+  top: 0px;
+  display: none;
+
+  .menu-header {
+    .menu-img-black {
+      display: inline-block;
+      width: 100px;
+      height: auto;
+      float: left;
+      margin: 5px;
+    }
+    .menu-profile {
+      display: inline-block;
+      margin-top: 30px;
+      @extend %h1white;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    margin-top: 100px;
+
+    li {
+      @extend %h2white;
+      font-size: 50px;
+      margin: 70px 10px;
+    }
+  }
+}
+
+#mapDetail {
+  height: 50%;
 }
 

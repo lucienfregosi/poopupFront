@@ -1,0 +1,35 @@
+.slider-menu {
+  position: fixed;
+  width: 80%;
+  height: 100%;
+  background-color: $black;
+  z-index: 3;
+  top: 0px;
+  display: none;
+
+  .menu-header {
+    .menu-img-black {
+      display: inline-block;
+      width: 100px;
+      height: auto;
+      float: left;
+      margin: 5px;
+    }
+    .menu-profile {
+      display: inline-block;
+      margin-top: 30px;
+      @extend %h1white;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    margin-top: 100px;
+
+    li {
+      @extend %h2white;
+      font-size: 50px;
+      margin: 70px 10px;
+    }
+  }
+}

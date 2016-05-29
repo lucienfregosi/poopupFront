@@ -1,0 +1,10 @@
+$(document).ready(function(){
+  $('.menu-img').click(function(){
+    console.log('test');
+    $('.slider-menu').slideToggle();
+  })
+  $('.close-menu').click(function(){
+    console.log('test');
+    $('.slider-menu').slideUp();
+  })
+})

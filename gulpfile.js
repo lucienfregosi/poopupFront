@@ -8,7 +8,8 @@ gulp.task('sass', function () {
             'scss/_global.scss',
             'scss/_account.scss',
             'scss/_header.scss',
-            'scss/_footer.scss',
+            'scss/_menu.scss',
+            'scss/_details.scss',
             'scss/_footer.scss'
           ])
       .pipe(concat('main.scss'))

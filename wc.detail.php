@@ -70,7 +70,7 @@
         	}
 
         	$src_id = 'internal';
-        	
+
 		}
 		else{
 			echo "error";
@@ -98,10 +98,10 @@
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDfna2y1msXURVroJD0PHWzUdJCG2yJLI&libraries=visualization"> </script>
 	<script type="text/javascript" src="wcDetail.js"></script>
 	</head>
-	
+
 	<body>';
-		
-	
+
+
 	// - On affiche la carte avec la postition du restaurant
 	echo '<div id="mapDetail"></div>';
 	echo '<script> showMarker('.$lat.','.$lng.');</script>';
@@ -143,7 +143,7 @@
 	<input type="submit" value="Notez" />
 	</form>';
 
-	// On veut ensuite sauvegarder les modifications 
+	// On veut ensuite sauvegarder les modifications
 	// 1. Si c'est une google places, on va proposer de l'enregistrer dans la base de données
 
 	//2.  Si c'est un wc internal on propose de sauvegarder les données si elles ont été modifiés et de sauvagarder la review
@@ -177,5 +177,3 @@
 
 		return $server_output;
     }
-
-
