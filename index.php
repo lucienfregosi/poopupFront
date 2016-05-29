@@ -14,6 +14,7 @@
 <!-- General page information -->
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <meta http-equiv="Content-Language" content="fr" />
 <style type="text/css">
       html, body { height: 100%; margin: 0; padding: 0; }
@@ -24,11 +25,17 @@
 <script type="text/javascript" src="main.js"></script>
 </head>
 
+<header>
+	<img class="menu-img" src="img/menu.png" alt="" />
+	<img class="logo" src="img/logo.png" alt="" />
+</header>
+<div class="slider-menu">
+	<ul>
+		<li href="lastreview.php">Your last reviews</li>
+	</ul>
+</div>
 <body>
-
-<a href="lastreview.php"> Your last reviews </a>
-<div id="map"></div>
-
+	<div id="map"></div>
 </body>
 
 </html>

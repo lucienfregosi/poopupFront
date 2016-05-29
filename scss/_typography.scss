@@ -1,0 +1,126 @@
+@font-face {
+  font-family: 'Galaxie';
+  src: url('Copernicus-Book.eot') format('embedded-opentype'),
+       url('Copernicus-Book.woff') format('woff'),
+       url('GT-Pressura-Mono-Light.ttf') format('truetype');
+  font-weight: lighter;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+@font-face {
+  font-family: 'GT Pressura';
+  src: url('GT-Pressura-Mono-Light.eot');
+  src: url('GT-Pressura-Mono-Light.woff') format('woff'),
+       url('GT-Pressura-Mono-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+$galaxie: 'Galaxie', arial, sans-serif;
+$pressura-light: 'GT Pressura', arial, sans-serif;
+
+%h1 {
+  font-family: $galaxie;
+  font-size: 22px;
+  line-height: 30px;
+
+  @include breakpoint(tablet) {
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  @include breakpoint(desktop) {
+    font-size: 48px;
+    line-height: 58px;
+  }
+}
+
+%h2 {
+  font-family: $galaxie;
+  font-size: 18px;
+  line-height: 24px;
+
+  @include breakpoint(tablet) {
+    font-size: 22px;
+    line-height: 30px;
+  }
+
+  @include breakpoint(desktop) {
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+}
+
+%h3 {
+  font-family: $pressura-light;
+  font-size: 13px;
+  letter-spacing: .5px;
+  line-height: 18px;
+}
+
+%module {
+  font-family: $pressura-light;
+  font-size: 16px;
+  letter-spacing: .5px;
+  line-height: 18px;
+}
+
+%description {
+  font-family: $galaxie;
+  font-size: 14px;
+  letter-spacing: .2px;
+  line-height: 24px;
+
+  @include breakpoint(desktop) {
+    font-size: 16px;
+    line-height: 26px;
+  }
+}
+
+%t2 {
+  font-family: $galaxie;
+  font-size: 13px;
+  letter-spacing: .2px;
+  line-height: 22px;
+}
+
+%t3 {
+  font-family: $galaxie;
+  font-size: 12px;
+  letter-spacing: .2px;
+  line-height: 22px;
+}
+
+%button {
+  font-family: $pressura-light;
+  font-size: 13px;
+  letter-spacing: .8px;
+}
+
+%sold-out {
+  font-family: $pressura-light;
+  font-size: 13px;
+  letter-spacing: .8px;
+}
+
+%text-link {
+  color: $gray;
+  font-family: $pressura-light;
+  font-size: 13px;
+  letter-spacing: .8px;
+}
+
+%nav-link {
+  color: $gray;
+  font-family: $pressura-light;
+  font-size: 13px;
+  letter-spacing: .8px;
+}
+
+%nav-item {
+  font-family: $galaxie;
+  font-size: 17px;
+}

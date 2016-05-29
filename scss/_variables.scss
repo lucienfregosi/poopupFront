@@ -1,0 +1,61 @@
+// Breakpoints /!\ WARNING our application is mobile first!
+$small: 	960px;
+$medium: 	1025px;
+$large: 	1280px;
+$max: 	  1440px;
+
+@mixin breakpoint($point) {
+  @if $point == xlarge {
+    @media (min-width: $max) { @content; }
+  }
+  @if $point == large {
+    @media (min-width: $large) { @content; }
+  }
+  @if $point == desktop {
+    @media (min-width: $medium) { @content; }
+  }
+
+  @if $point == mobile {
+    @media (max-width: $small - 1)  { @content; }
+  }
+
+  // tablet
+  @if $point == tablet {
+    @media (min-width: $small) { @content; }
+  }
+  @if $point == tabletPortrait {
+    @media (min-width: $small) and (max-width: $medium) and (orientation:portrait) { @content; }
+  }
+  @if $point == tabletLandscape {
+    @media (min-width: $small) and (max-width: $medium) and (orientation:landscape) { @content; }
+  }
+}
+
+@mixin transition($properties...) {
+  -moz-transition:    $properties;
+  -webkit-transition: $properties;
+  -o-transition:      $properties;
+  transition:         $properties;
+}
+
+@mixin transform($transforms...) {
+  -moz-transform:    $transforms;
+  -o-transform:      $transforms;
+  -ms-transform:     $transforms;
+  -webkit-transform: $transforms;
+  transform:         $transforms;
+}
+
+// Colors
+$white:         #FFF;
+$black:         #000;
+$gray:          #333;
+$darkgray: 	    #979797;
+$blue:          #2C51BE;
+$darkblue:      #01579B;
+
+
+$hover:         #BDBDBD;
+$button-hover:  #01579B;
+$icon-color:    #FFF;
+$cap:           gray;
