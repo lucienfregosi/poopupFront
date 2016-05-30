@@ -1,3 +1,13 @@
 #mapDetail {
   height: 50%;
 }
+.container-detail {
+  background-color: $white;
+
+  .detail-title {
+    @extend %h1;
+  }
+  .detail-field {
+    @extend %h2;
+  }
+}

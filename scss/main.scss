@@ -209,9 +209,6 @@ body {
   padding: 0;
   height: 100%;
 }
-html {
-  background-color: $cap!important;
-}
 body {
   color: $gray!important;
   height: 100%;
@@ -440,5 +437,15 @@ header {
 
 #mapDetail {
   height: 50%;
+}
+.container-detail {
+  background-color: $white;
+
+  .detail-title {
+    @extend %h1;
+  }
+  .detail-field {
+    @extend %h2;
+  }
 }
 

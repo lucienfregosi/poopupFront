@@ -11,7 +11,12 @@
 	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDfna2y1msXURVroJD0PHWzUdJCG2yJLI&libraries=visualization"> </script>
+  <?php
+    if (strpos($_SERVER['PHP_SELF'], 'wc.detail'))
+      echo "<script type=\"text/javascript\" src=\"wcDetail.js\"></script>";
+  ?>
 	<script type="text/javascript" src="main.js"></script>
+
 </head>
 
 <header>
