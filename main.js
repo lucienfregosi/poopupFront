@@ -2,6 +2,7 @@ var map;
 var lat;
 var lng;
 var current_info_window;
+var marker_create_wc;
 
 $(document).ready(function() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -246,11 +247,12 @@ function create_wc(location) {
 
     if(current_info_window !== undefined){
         current_info_window.close();
+        marker_create_wc.setMap(null);
         console.log("closing");
     }
 
     // Faudrait le décaler pour pas que l'info window passe juste au dessus du marker
-    var marker = new google.maps.Marker({
+    marker_create_wc = new google.maps.Marker({
         position: location,
         map: map
     });
@@ -282,4 +284,6 @@ function close_info_window(){
 
     // On ferme l'info window
     current_info_window.close();
+    marker_create_wc.setMap(null);
+
 }

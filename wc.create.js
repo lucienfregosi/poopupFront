@@ -12,7 +12,7 @@ $(document).ready(function() {
 	mapTypeId: 			google.maps.MapTypeId.ROADMAP
   });
 
-  // On affiche le point sur la map
+  // On affiche le point sur la  map
   var gpoint = {lat: latitude, lng: longitude}
   var marker = new google.maps.Marker({
     position: gpoint,
