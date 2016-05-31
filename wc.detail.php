@@ -86,8 +86,12 @@
 
 	<body>
 
-
-	<div id="mapDetail"></div>
+<style media="screen">
+.map_canvas img {
+	max-width: none; // just in case it does not work... add !important;
+}
+</style>
+	<div id="mapDetail" class="map_canvas"></div>
 	<?php
 	echo '<script> showMarker('.$lat.','.$lng.');</script>';
 	?>
@@ -103,7 +107,7 @@
 		if($src_id == 'internal'){
 			if($review_message != ''){
 				// Le message est initilaisé on a pas de résultats donc on l'affiche
-				echo '<div class="detail-field">Review : '.$review_message.'</label></br>';
+				echo '<div class="detail-field">review : '.$review_message.'</label></br>';
 			}
 			else{
 				print_r($wc_review_array);

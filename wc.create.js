@@ -9,12 +9,16 @@ $(document).ready(function() {
 	zoomControl: 		true, 													// Enable zoom control
 	zoomControlOptions: { style: google.maps.ZoomControlStyle.SMALL }, 			// Zoom control buttons size
 	scaleControl: 		true, 													// Enable scale control
-	mapTypeId: 			google.maps.MapTypeId.ROADMAP 	
+	mapTypeId: 			google.maps.MapTypeId.ROADMAP
   });
-  
+
   // On affiche le point sur la map
   var gpoint = {lat: latitude, lng: longitude}
-  var marker = new google.maps.Marker({position: gpoint, map: mapCreate});
+  var marker = new google.maps.Marker({
+    position: gpoint,
+    map: mapCreate,
+    animation: google.maps.Animation.DROP
+  });
 
    // On centre la carte autour du markeur
    mapCreate.setCenter(new google.maps.LatLng(latitude, longitude))

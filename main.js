@@ -6,12 +6,12 @@ var current_info_window;
 $(document).ready(function() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: 			new google.maps.LatLng(46.614190, 2.556114), 	        // Map center
-	zoom: 				17, 														// Zoom level, 0 = earth view to higher value
+	zoom: 				18, 														// Zoom level, 0 = earth view to higher value
 	panControl: 		true, 													// Enable pan Control
 	zoomControl: 		true, 													// Enable zoom control
 	zoomControlOptions: { style: google.maps.ZoomControlStyle.SMALL }, 			// Zoom control buttons size
 	scaleControl: 		true, 													// Enable scale control
-	mapTypeId: 			google.maps.MapTypeId.ROADMAP 	
+	mapTypeId: 			google.maps.MapTypeId.ROADMAP
   });
 
 
@@ -33,14 +33,19 @@ function getLocation() {
     }
 }
 function showPosition(position) {
-    //x.innerHTML = "Latitude: " + position.coords.latitude + 
-    //"<br>Longitude: " + position.coords.longitude; 
+    //x.innerHTML = "Latitude: " + position.coords.latitude +
+    //"<br>Longitude: " + position.coords.longitude;
     lat = position.coords.latitude;
     lng = position.coords.longitude;
     map.setCenter(new google.maps.LatLng(lat, lng));
     // On va afficher une marker de couleur différente la ou l'utilisaateur est localisé. Voir après comment changer en un point bleu plutot
     var gpoint = {lat: lat, lng: lng}
-    var marker = new google.maps.Marker({position: gpoint, map: map, icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'});
+    var marker = new google.maps.Marker({
+      position: gpoint,
+      map: map,
+      animation: google.maps.Animation.DROP,
+      icon: 'img/poop.png'
+    });
 
     // on appele l'api pour charger les wc
     getGooglePlaces();
@@ -59,7 +64,18 @@ function getGooglePlaces(){
         success: function(gplace_list){
             	for(var i =0; i < gplace_list.result.length; i++){
                 var gpoint = {lat: gplace_list.result[i].latitude, lng: gplace_list.result[i].longitude}
-                var marker = new google.maps.Marker({position: gpoint, map: map, adress: gplace_list.result[i].adress, name: gplace_list.result[i].name, type: gplace_list.result[i].type, src_id : 'gplaces', lat : gplace_list.result[i].latitude, lng : gplace_list.result[i].longitude});
+                var marker = new google.maps.Marker({
+                  position: gpoint,
+                  map: map,
+                  adress: gplace_list.result[i].adress,
+                  name: gplace_list.result[i].name,
+                  type: gplace_list.result[i].type,
+                  src_id : 'gplaces',
+                  animation: google.maps.Animation.DROP,
+                  icon: 'img/toilet.png',
+                  lat : gplace_list.result[i].latitude,
+                  lng : gplace_list.result[i].longitude
+                });
 
                 // On va ajouter un envent au clic sur le marker pour ouvrir une info window
                 addListenerGoogle(marker);
@@ -91,10 +107,20 @@ function getGooglePlacesNextToken(nextToken){
             for(var i =0; i < gplace_list.result.length; i++){
                 // On crée le marker
                 var gpoint = {lat: gplace_list.result[i].latitude, lng: gplace_list.result[i].longitude}
-                var marker = new google.maps.Marker({position: gpoint, map: map,adress: gplace_list.result[i].adress, name: gplace_list.result[i].name, type: gplace_list.result[i].type, src_id : 'gplaces', lat : gplace_list.result[i].latitude, lng : gplace_list.result[i].longitude });
+                var marker = new google.maps.Marker({
+                  position: gpoint,
+                  map: map,adress: gplace_list.result[i].adress,
+                  name: gplace_list.result[i].name,
+                  type: gplace_list.result[i].type,
+                  src_id : 'gplaces',
+                  animation: google.maps.Animation.DROP,
+                  icon: 'img/toilet.png',
+                  lat : gplace_list.result[i].latitude,
+                  lng : gplace_list.result[i].longitude
+                });
 
                 addListenerGoogle(marker);
-                
+
             }
             // Tester si on doit rapeller la fonction avec le next token
             if(gplace_list.pagetoken != 'null'){
@@ -122,7 +148,18 @@ function getOtherWC(){
             for(var i =0; i < wc_list.wc.length; i++){
                 // A voir comment on peut les adapter au meme format que titre type adresse note et aller chercher la note. Gestion de l'utf8 dans les scripts d'enregistrement
                 var gpoint = {lat: parseFloat(wc_list.wc[i].latitude), lng: parseFloat(wc_list.wc[i].longitude)}
-                var marker = new google.maps.Marker({position: gpoint, map: map, name : wc_list.wc[i].wc_name, type: wc_list.wc[i].type, src_id : 'internal', zIndex : 10000, id : wc_list.wc[i].WC_id, note :wc_list.wc[i].note});
+                var marker = new google.maps.Marker({
+                  position: gpoint,
+                  map: map,
+                  name : wc_list.wc[i].wc_name,
+                  type: wc_list.wc[i].type,
+                  src_id : 'internal',
+                  zIndex : 10000,
+                  animation: google.maps.Animation.DROP,
+                  icon: 'img/toilet.png',
+                  id : wc_list.wc[i].WC_id,
+                  note :wc_list.wc[i].note
+                });
 
                 addListenerInternal(marker);
             }
@@ -162,7 +199,7 @@ function addListenerInternal(marker){
           info_window.setPosition(event.latLng);
           // Puis on lui demande de s'ouvrir sur notre carte
           info_window.open(map);
-    
+
     });
 
 }
@@ -214,7 +251,7 @@ function create_wc(location) {
 
     // Faudrait le décaler pour pas que l'info window passe juste au dessus du marker
     var marker = new google.maps.Marker({
-        position: location, 
+        position: location,
         map: map
     });
 
