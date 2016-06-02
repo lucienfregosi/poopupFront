@@ -15,7 +15,6 @@
  			$comment_flg = null;
  			$src_id = 'gplacesBDD';
 
-
  			// On ajoute le post a la base de données avec Curl
  			$url = 'http://54.218.31.103:5555/insertwc';
  			$fields = array(
@@ -86,21 +85,52 @@
 
 	<body>
 
-<style media="screen">
-.map_canvas img {
-	max-width: none; // just in case it does not work... add !important;
-}
-</style>
 	<div id="mapDetail" class="map_canvas"></div>
 	<?php
 	echo '<script> showMarker('.$lat.','.$lng.');</script>';
 	?>
+	<div class="detail-header">
+		Informations sur les toilettes
+	</div>
 	<div class="container-detail">
-		<div class="detail-title"> <?php echo "$name"; ?></div>
-		<div class="detail-field">Type : <?php echo "$type"; ?></div></br>
-		<div class="detail-field">Prix : <?php echo "$prix"; ?></div></br>
-		<div class="detail-field">Nombre de Wc : <?php echo "$wc_cnt";  ?></div></br>
-		<div class="detail-field">Note Globale : <?php echo "$note"; ?></div></br>
+		<div class="detail-field-container">
+			<i class="fa fa-arrow-circle-o-right fa-2x fa-detail" aria-hidden="true"></i>
+			<div class="detail-field">
+				Name <br> <?php echo "$name"; ?>
+			</div>
+		</div>
+		<div class="detail-field-container">
+			<i class="fa fa-home fa-2x fa-detail" aria-hidden="true"></i>
+			<div class="detail-field">
+				Type <br> <?php echo "$type"; ?>
+			</div>
+		</div>
+		<div class="detail-field-container">
+			<i class="fa fa-usd fa-2x fa-detail" aria-hidden="true"></i>
+			<div class="detail-field">
+				Prix <br> <?php echo "$prix"; ?>
+			</div>
+		</div>
+		<div class="detail-field-container">
+			<i class="fa fa-anchor fa-2x fa-detail" aria-hidden="true"></i>
+			<div class="detail-field">
+				Nombre de toilette<br> <?php echo "$wc_cnt"; ?>
+			</div>
+		</div>
+
+		<div class="detail-header">
+			Notes & reviews
+		</div>
+		<div class="detail-field-container">Note Globale :
+			<?php
+			if ($note != undef) {
+				echo "<div id=\"rateYoGlobal\" data-note=\"$note\"></div>";
+			}else {
+					echo "Pas encore de note :(";
+			}
+			?>
+
+		</div>
 
 		<?php
 		// On a des review des toilettes seulement si c'est un interal
@@ -110,7 +140,13 @@
 				echo '<div class="detail-field">review : '.$review_message.'</label></br>';
 			}
 			else{
-				print_r($wc_review_array);
+				foreach ($wc_review_array as $key => $wc) {
+					$counter = (sizeof($wc) < 5 ? sizeof($wc) : 5);
+					for ($i=0; $i < $counter; $i++) {
+						$numero = $i + 1;
+						echo "<div class=\"detail-field detail-review\">Review ". $numero. ':<br>'.$wc[$i]->comment."</div>";
+					}
+				}
 			}
 		}
 		?>
@@ -123,25 +159,34 @@
 	<input type="hidden" name="user_id" value="'.$_SESSION['user_id'].'"/>
 	<input type="submit" value="Notez" />
 	</form>'; -->
+	<div class="detail-header margin-top">
+		Votre review
+	</div>
+	<div class="review-form" style="background-color:white;">
+		<div class="detail-field">Votre note <div id="rateYoDetail"></div></div></br>
+		<div class="detail-field">
+			Votre review
+			<input id="comment" type="textarea" name="comment" size="50" style="line-height: 50px;"/>
+		</div>
+		<input type="hidden" id="wc-id" name="wc_id" value=" <?php echo $wc_id ?>"/>
+		<input type="hidden" id="user-id" name="user_id" value="<?php echo $_SESSION['user_id'] ?>"/>
+		<div class="detail-field error-message">
+			Svp laissez un commentaire
+		</div>
+		<div class="button button-review">Notez</div>
+	</div>
 
-		<form style="background-color:white;"action = "wc.edit.php" method = "POST">
-			<label class="">Votre note : </label><input type="number" name="note"/></br>
-			<label>Votre review : </label><input type="text" name="comment"/></br>
-			<input type="hidden" name="wc_id" value=" <?php $wc_id ?>"/>
-			<input type="hidden" name="user_id" value="<?php $_SESSION['user_id'] ?>"/>
-			<input type="submit" value="Notez" />
-		</form>
-	<?php
 
-	// On veut ensuite sauvegarder les modifications
+	<!-- // On veut ensuite sauvegarder les modifications
 	// 1. Si c'est une google places, on va proposer de l'enregistrer dans la base de données
 
 	//2.  Si c'est un wc internal on propose de sauvegarder les données si elles ont été modifiés et de sauvagarder la review
 
-	// On ferme les balises
-	echo '</div></body></html>';
+	// On ferme les balises -->
+	</div>
+</body>
 
-
+	<?php
 	// Fonction pour faire des get
 	function get_data_with_curl($url){
         $ch = curl_init();

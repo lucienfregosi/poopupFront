@@ -53,6 +53,7 @@ $gray:          #333;
 $darkgray: 	    #979797;
 $blue:          #2C51BE;
 $darkblue:      #01579B;
+$titlegray:     #E0E0E0;
 
 
 $hover:         #BDBDBD;
@@ -208,6 +209,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  width: 100%;
 }
 body {
   color: $gray!important;
@@ -225,7 +227,9 @@ body {
   };
 }
 
-#map { height: 100%; }
+#map {
+  height: calc(100% - 120px);
+}
 
 a {
   color: $gray;
@@ -298,18 +302,17 @@ h6 { font-size: .75em; }
 
 button, .button {
   @extend %button;
-  background: $white;
+  background: $black;
   border: 0;
   border-radius: 0;
-  color: $black;
+  color: $white;
   cursor: pointer;
   font-family: $pressura-light;
-  height: 55px;
-  line-height: 42px;
+  width: 100%;
+  line-height: 50px;
   padding: 0;
   text-align: center;
   text-decoration: none;
-  width: 250px;
   -webkit-appearance: none;
 
   span {
@@ -324,7 +327,7 @@ button, .button {
 
   @include breakpoint(tablet) {
     &:hover {
-      background: $button-hover;
+      background: $darkgray;
     }
   }
 }
@@ -437,15 +440,60 @@ header {
 
 #mapDetail {
   height: 50%;
+  width: 100%;
 }
-.container-detail {
+.detail-header {
+  max-width: 100%;
+  background-color: $titlegray;
+  height: 40px;
+  padding-top: 20px;
+  padding-left: 40px;
+  font-weight: bold;
+}
+.margin-top {
+  margin-top: 20px;
+}
+.detail-field-container {
   background-color: $white;
 
-  .detail-title {
-    @extend %h1;
+  .fa-detail {
+    display: inline-block;
+    text-align: center;
+    vertical-align: bottom;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    line-height: 50px;
   }
-  .detail-field {
-    @extend %h2;
+  .detail-field{
+    display: inline-block;
+    padding-left: 20px;
+    vertical-align: top;
+
+    .detail-title {
+      @extend %h1;
+    }
+    .detail-field {
+      @extend %h2;
+    }
   }
+  .rating {
+    height: 100px;
+  }
+
+}
+.review-form {
+  padding-bottom: 30px;
+
+  #comment {
+    margin-bottom: 30px;
+  }
+}
+.detail-review {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.error-message {
+  display: none;
 }
 

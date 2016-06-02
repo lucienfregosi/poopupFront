@@ -1,16 +1,17 @@
-.container-detail .detail-title {
+.detail-field-container .detail-field .detail-title {
   font-family: "Galaxie", arial, sans-serif;
   font-size: 40px;
   line-height: 30px;
   color: #000; }
   @media (min-width: 960px) {
-    .container-detail .detail-title {
+    .detail-field-container .detail-field .detail-title {
       font-size: 40px;
       line-height: 42px; } }
   @media (min-width: 1025px) {
-    .container-detail .detail-title {
+    .detail-field-container .detail-field .detail-title {
       font-size: 48px;
       line-height: 58px; } }
+
 .slider-menu .menu-header .menu-profile {
   font-family: "Galaxie", arial, sans-serif;
   font-size: 70px;
@@ -25,16 +26,16 @@
       font-size: 48px;
       line-height: 58px; } }
 
-.container-detail .detail-field {
+.detail-field-container .detail-field .detail-field {
   font-family: "Galaxie", arial, sans-serif;
   font-size: 18px;
   line-height: 24px; }
   @media (min-width: 960px) {
-    .container-detail .detail-field {
+    .detail-field-container .detail-field .detail-field {
       font-size: 22px;
       line-height: 30px; } }
   @media (min-width: 1025px) {
-    .container-detail .detail-field {
+    .detail-field-container .detail-field .detail-field {
       font-size: 26px;
       line-height: 34px; } }
 
@@ -62,7 +63,8 @@ body {
   font-size: 16px;
   margin: 0;
   padding: 0;
-  height: 100%; }
+  height: 100%;
+  width: 100%; }
 
 body {
   color: #333 !important;
@@ -79,7 +81,7 @@ body {
       width: 100%; } }
 
 #map {
-  height: 100%; }
+  height: calc(100% - 120px); }
 
 a {
   color: #333; }
@@ -151,18 +153,17 @@ h6 {
   font-size: .75em; }
 
 button, .button {
-  background: #FFF;
+  background: #000;
   border: 0;
   border-radius: 0;
-  color: #000;
+  color: #FFF;
   cursor: pointer;
   font-family: "GT Pressura", arial, sans-serif;
-  height: 55px;
-  line-height: 42px;
+  width: 100%;
+  line-height: 50px;
   padding: 0;
   text-align: center;
   text-decoration: none;
-  width: 250px;
   -webkit-appearance: none; }
   button span, .button span {
     font-size: 12px;
@@ -172,7 +173,7 @@ button, .button {
     color: #FFF; }
   @media (min-width: 960px) {
     button:hover, .button:hover {
-      background: #01579B; } }
+      background: #979797; } }
 
 input {
   border-radius: 0; }
@@ -247,7 +248,45 @@ header {
       margin: 70px 10px; }
 
 #mapDetail {
-  height: 50%; }
+  height: 50%;
+  width: 100%; }
 
-.container-detail {
+.detail-header {
+  max-width: 100%;
+  background-color: #E0E0E0;
+  height: 40px;
+  padding-top: 20px;
+  padding-left: 40px;
+  font-weight: bold; }
+
+.margin-top {
+  margin-top: 20px; }
+
+.detail-field-container {
   background-color: #FFF; }
+  .detail-field-container .fa-detail {
+    display: inline-block;
+    text-align: center;
+    vertical-align: bottom;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    line-height: 50px; }
+  .detail-field-container .detail-field {
+    display: inline-block;
+    padding-left: 20px;
+    vertical-align: top; }
+  .detail-field-container .rating {
+    height: 100px; }
+
+.review-form {
+  padding-bottom: 30px; }
+  .review-form #comment {
+    margin-bottom: 30px; }
+
+.detail-review {
+  margin-top: 20px;
+  margin-left: 20px; }
+
+.error-message {
+  display: none; }
