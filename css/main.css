@@ -77,7 +77,6 @@ body {
       border-left: solid 1px #BDBDBD !important;
       border-right: solid 1px #BDBDBD !important;
       margin: 0 auto !important;
-      max-width: 1440px;
       width: 100%; } }
 
 #map {
@@ -98,7 +97,6 @@ a {
       margin-top: 105px !important; } }
   @media (min-width: 1440px) {
     .wrapper {
-      max-width: 1440px;
       margin-top: 75px !important;
       margin-left: auto !important;
       margin-right: auto !important;
@@ -106,7 +104,6 @@ a {
 
 @media (min-width: 1440px) {
   .subheader, .header, .footer-wrapper, .shopping-header-product, .shopping-header-scent {
-    max-width: 1440px;
     margin: 0 auto !important;
     width: 100%; } }
 
@@ -312,12 +309,12 @@ header {
   height: auto;
   margin: 0 !important; }
 
-#login {
+#login, #create {
   text-align: center;
   width: 100%;
   height: calc(100% - 120px);
   /* Hoshi */ }
-  #login .input {
+  #login .input, #create .input {
     position: relative;
     z-index: 1;
     display: inline-block;
@@ -326,7 +323,7 @@ header {
     height: 100px;
     width: calc(100% - 2em);
     vertical-align: top; }
-  #login .input__field {
+  #login .input__field, #create .input__field {
     position: relative;
     display: block;
     float: right;
@@ -341,9 +338,9 @@ header {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-appearance: none;
     /* for box shadows to show on iOS */ }
-  #login .input__field:focus {
+  #login .input__field:focus, #create .input__field:focus {
     outline: none; }
-  #login .input__label {
+  #login .input__label, #create .input__label {
     display: inline-block;
     float: right;
     padding: 0 1em;
@@ -359,15 +356,15 @@ header {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; }
-  #login .input--hoshi {
+  #login .input--hoshi, #create .input--hoshi {
     overflow: hidden; }
-  #login .input__field--hoshi {
+  #login .input__field--hoshi, #create .input__field--hoshi {
     margin-top: 1em;
     padding: 0.85em 0.15em;
     width: 100%;
     background: transparent;
     color: #000; }
-  #login .input__label--hoshi {
+  #login .input__label--hoshi, #create .input__label--hoshi {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -376,10 +373,11 @@ header {
     height: calc(100% - 1em);
     text-align: left;
     pointer-events: none; }
-  #login .input__label-content--hoshi {
+  #login .input__label-content--hoshi, #create .input__label-content--hoshi {
     position: absolute; }
   #login .input__label--hoshi::before,
-  #login .input__label--hoshi::after {
+  #login .input__label--hoshi::after, #create .input__label--hoshi::before,
+  #create .input__label--hoshi::after {
     content: '';
     position: absolute;
     top: 0;
@@ -387,25 +385,27 @@ header {
     width: 100%;
     height: calc(100% - 10px);
     border-bottom: 1px solid #B9C1CA; }
-  #login .input__label--hoshi::after {
+  #login .input__label--hoshi::after, #create .input__label--hoshi::after {
     margin-top: 2px;
     border-bottom: 4px solid red;
     -webkit-transform: translate3d(-100%, 0, 0);
     transform: translate3d(-100%, 0, 0);
     -webkit-transition: -webkit-transform 0.3s;
     transition: transform 0.3s; }
-  #login .input__label--hoshi-color-1::after {
+  #login .input__label--hoshi-color-1::after, #create .input__label--hoshi-color-1::after {
     border-color: #000; }
-  #login .input__label--hoshi-color-2::after {
+  #login .input__label--hoshi-color-2::after, #create .input__label--hoshi-color-2::after {
     border-color: #000; }
-  #login .input__label--hoshi-color-3::after {
+  #login .input__label--hoshi-color-3::after, #create .input__label--hoshi-color-3::after {
     border-color: #000; }
   #login .input__field--hoshi:focus + .input__label--hoshi::after,
-  #login .input--filled .input__label--hoshi::after {
+  #login .input--filled .input__label--hoshi::after, #create .input__field--hoshi:focus + .input__label--hoshi::after,
+  #create .input--filled .input__label--hoshi::after {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); }
   #login .input__field--hoshi:focus + .input__label--hoshi .input__label-content--hoshi,
-  #login .input--filled .input__label-content--hoshi {
+  #login .input--filled .input__label-content--hoshi, #create .input__field--hoshi:focus + .input__label--hoshi .input__label-content--hoshi,
+  #create .input--filled .input__label-content--hoshi {
     -webkit-animation: anim-1 0.3s forwards;
     animation: anim-1 0.3s forwards; }
 
@@ -436,7 +436,7 @@ header {
     opacity: 1;
     -webkit-transform: translate3d(0, -40%, 0);
     transform: translate3d(0, -40%, 0); } }
-  #login .button {
+  #login .button, #create .button {
     bottom: 0; }
 
 .slider-menu {

@@ -17,7 +17,6 @@ body {
     border-left: solid 1px $hover!important;
     border-right: solid 1px $hover!important;
     margin: 0 auto!important;
-    max-width: 1440px;
     width: 100%;
   };
 }
@@ -43,7 +42,6 @@ a {
     margin-top: 105px!important;
   }
   @include breakpoint(xlarge) {
-    max-width: 1440px;
     margin-top: 75px!important;
     margin-left: auto!important;
     margin-right: auto!important;
@@ -54,7 +52,6 @@ a {
 
 .subheader, .header, .footer-wrapper, .shopping-header-product, .shopping-header-scent {
   @include breakpoint(xlarge) {
-    max-width: 1440px;
     margin: 0 auto!important;
     width: 100%;
   };

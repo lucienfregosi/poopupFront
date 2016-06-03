@@ -14,7 +14,6 @@
  			$note = 'undef';
  			$comment_flg = null;
  			$src_id = 'gplacesBDD';
-
  			// On ajoute le post a la base de données avec Curl
  			$url = 'http://54.218.31.103:5555/insertwc';
  			$fields = array(

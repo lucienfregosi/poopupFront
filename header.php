@@ -20,6 +20,9 @@
 		}
 		elseif (strpos($_SERVER['PHP_SELF'], 'lastreview')) {
 			echo "<script type=\"text/javascript\" src=\"lastreview.js\"></script>";
+		}
+		elseif (strpos($_SERVER['PHP_SELF'], 'wc.create')) {
+			echo "<script type=\"text/javascript\" src=\"wc.create.js\"></script>";
 		} else {
 			echo "<script type=\"text/javascript\" src=\"main.js\"></script>";
 		}
