@@ -3,6 +3,7 @@
 
 	$lng =  $_POST['longitude'];
 	$lat =  $_POST['latitude'];
+
 	// On veut afficher le point sur une petite map
 	// demander les infos de facon a akputer un wc et une review
 	// revenir sur la page d"acceuil avec les toilettes nouvellemenet crée
@@ -81,7 +82,7 @@
 			<span class="input__label-content input__label-content--hoshi">Commentaire</span>
 		</label>
 	</span>
-	<input type="hidden" name="latitude" value="<php echo $lat; ?>">
-	<input type="hidden" name="longitude" value="<php echo $lng; ?>">
+	<input type="hidden" name="latitude" value= "<?php echo $lat; ?>" >
+	<input type="hidden" name="longitude" value="<?php echo $lng; ?>">
 	<input class="button" type="submit" value="Add WC">
 	</form>

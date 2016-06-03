@@ -1,6 +1,8 @@
 <?php
+	echo $_POST['src_id'];
 	session_start();
-	// On doit d'abord tester si l'on vient d'un d'une google places ou de l'api interne
+	// On doit d'abord tester si l'on vient d'un d'une google places ou de l'api interne*
+	echo $_POST['src_id'];
 	if(isset($_POST['src_id'])){
 		if($_POST['src_id'] == 'gplaces'){
 			// On vient d'un google post, il va donc falloir l'ajouter si l'utilisateur le note ou met un commentaire
@@ -122,7 +124,7 @@
 		</div>
 		<div class="detail-field-container">Note Globale :
 			<?php
-			if ($note != undef) {
+			if ($note != 'undef') {
 				echo "<div id=\"rateYoGlobal\" data-note=\"$note\"></div>";
 			}else {
 					echo "Pas encore de note :(";

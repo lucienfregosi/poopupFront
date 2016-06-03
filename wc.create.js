@@ -13,7 +13,7 @@ $(document).ready(function() {
   });
 
   // On affiche le point sur la  map
-  var gpoint = {lat: latitude, lng: longitude}
+  var gpoint = {lat: parseFloat(latitude), lng: parseFloat(longitude)}
   var marker = new google.maps.Marker({
     position: gpoint,
     map: mapCreate,
@@ -21,7 +21,7 @@ $(document).ready(function() {
   });
 
    // On centre la carte autour du markeur
-   mapCreate.setCenter(new google.maps.LatLng(latitude, longitude))
+   mapCreate.setCenter(new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude)))
 
 
 });
@@ -30,4 +30,6 @@ $(document).ready(function() {
      // On set la valeur a afficher dans des variables globales
  	 latitude = lat;
  	 longitude = lng;
+
+
 }

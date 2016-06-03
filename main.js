@@ -78,7 +78,8 @@ function getGooglePlaces(){
                   animation: google.maps.Animation.DROP,
                   icon: 'img/toilet.png',
                   lat : gplace_list.result[i].latitude,
-                  lng : gplace_list.result[i].longitude
+                  lng : gplace_list.result[i].longitude,
+                  zIndex : 0
                 });
 
                 // On va ajouter un envent au clic sur le marker pour ouvrir une info window
@@ -108,6 +109,7 @@ function getGooglePlacesNextToken(nextToken){
         url: url,
         dataType: 'json',
         success: function(gplace_list){
+          console.log(gplace_list);
             for(var i =0; i < gplace_list.result.length; i++){
                 // On crée le marker
                 var gpoint = {lat: gplace_list.result[i].latitude, lng: gplace_list.result[i].longitude}
@@ -120,7 +122,8 @@ function getGooglePlacesNextToken(nextToken){
                   animation: google.maps.Animation.DROP,
                   icon: 'img/toilet.png',
                   lat : gplace_list.result[i].latitude,
-                  lng : gplace_list.result[i].longitude
+                  lng : gplace_list.result[i].longitude,
+                  zIndex : 0
                 });
 
                 addListenerGoogle(marker);
@@ -147,7 +150,6 @@ function getOtherWC(){
         url: url,
         dataType: 'json',
         success: function(wc_list){
-            console.log(wc_list);
             // on affiche tous les WC contenus dans notre BDD
             for(var i =0; i < wc_list.wc.length; i++){
                 // A voir comment on peut les adapter au meme format que titre type adresse note et aller chercher la note. Gestion de l'utf8 dans les scripts d'enregistrement
@@ -178,6 +180,7 @@ function addListenerInternal(marker){
 
     marker.addListener('click', function(event) {
             // Si le nom est pareil que le type on en affiche qu'un
+            console.log('internal');
             if(this.name ==  null){
               var name = this.type;
               var type = "";
@@ -186,7 +189,9 @@ function addListenerInternal(marker){
               var name = this.name;
               var type = this.type;
             }
-            var note = (this.note != 'undefined' ? 0 : this.note);
+
+            var note = (this.note != 'undef' ? this.note : 0);
+
             var info_window_html = '<div id="iw-container">'+
                             '<div class="iw-title">' + this.name +'</div>' +
                             '<div class="iw-content">' +
@@ -199,6 +204,7 @@ function addListenerInternal(marker){
                             '<input type="hidden" name = "lat" value="'+ this.lat +'" ></input>' +
                             '<input type="hidden" name = "lng" value="'+ this.lng +'" ></input>' +
                             '<input type="hidden" name = "adress" value="'+ this.adress +'" ></input>' +
+                            '<input type="hidden" name = "id" value="'+ this.id +'" ></input>' +
                             '<input class="button" type="submit" value="voir"/>' +
                             '</form></div>'+
                             '</div>';
@@ -222,13 +228,16 @@ function addListenerInternal(marker){
 function addListenerGoogle(marker){
 
     marker.addListener('click', function(event) {
+        console.log('google');
         // A voir comment tu veux l'afficher biatch de front end
         // on vient de l'api google on a donc pas de notes
         var note = (this.note != 'undefined' ? 0 : this.note);
+        console.log("passe");
 
         // On veut construire une "pop up" avec les informations qu'on a. Par défaut on met une note à 0 ou inconnu et si l'utilisateur le note, on l'enregistre dans notre base
         // il faut construire un submit avec les différentes informartions pour pouvoir soit l'enregistrer si cela vient de gplaces, ou le modifier si c'est notre api interne
-        var info_window_html = '<div id="iw-container">'+
+        var info_window_html = '<div id="content">'+
+                        '<div id="iw-container">'+
                         '<div class="iw-title">' + this.name +'</div>' +
                         '<div class="iw-content">' +
                         '<div class="iw-subTitle">Type: '+ this.type +'</div>' +
@@ -242,7 +251,7 @@ function addListenerGoogle(marker){
                         '<input type="hidden" name = "adress" value="'+ this.adress +'" ></input>' +
                         '<input class="button" type="submit" value="voir"/>' +
                         '</form><p></div>'+
-                        '</div>';
+                        '</div></div>';
 
 
         // Il faudrat envoyer dans le post de voir de l'info window nom, type, et éditer prix, nombre toilette
@@ -264,15 +273,8 @@ function create_wc(location) {
 
     if(current_info_window !== undefined){
         current_info_window.close();
-        marker_create_wc.setMap(null);
         console.log("closing");
     }
-
-    // Faudrait le décaler pour pas que l'info window passe juste au dessus du marker
-    marker_create_wc = new google.maps.Marker({
-        position: location,
-        map: map
-    });
 
 
     var html = '<div id="content"> '+

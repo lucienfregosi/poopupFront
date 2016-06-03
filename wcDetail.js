@@ -15,11 +15,11 @@ $(document).ready(function() {
   });
 
   // On affiche le point sur la map
-  var gpoint = {lat: latitude, lng: longitude}
+  var gpoint = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
    var marker = new google.maps.Marker({position: gpoint, map: mapDetail});
 
    // On centre la carte autour du markeur
-   mapDetail.setCenter(new google.maps.LatLng(latitude, longitude))
+   mapDetail.setCenter(new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude)));
 
    $("#rateYoGlobal").rateYo({
     rating: $("#rateYoGlobal").data('note'),
