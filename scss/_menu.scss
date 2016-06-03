@@ -1,3 +1,19 @@
+.header-login {
+  .logo {
+    width: 100px;
+    height: auto;
+    margin: 0 !important;
+  }
+}
+#login {
+  text-align: center;
+  width: 100%;
+  height: calc(100% - 120px);
+
+  .button {
+    bottom: 0;
+  }
+}
 .slider-menu {
   position: fixed;
   width: 80%;
@@ -6,6 +22,7 @@
   z-index: 3;
   top: 0px;
   display: none;
+  z-index: 1001;
 
   .menu-header {
     .menu-img-black {

@@ -11,13 +11,23 @@
 	//echo '<script> showMarker('.$lat.','.$lng.');</script>';
 
 	$res = json_decode($res);
+
 	for($i = 0; $i < count($res); $i++){
-		echo "Note :".$res[$i]->note;
-		echo "Comment :".$res[$i]->comment;
+		echo "<div class=\"detail-header\">Review de " . $res[$i]->wc_name . "</div>";
+		echo "Note:";
+		if ($note != undef) {
+			echo "<div class=\"rateYoGlobal\" data-note=\"" . $res[$i]->note . "\"></div>";
+		}else {
+				echo "Pas encore de note :(";
+		}
+		echo "Votre review:<br>".$res[$i]->comment;
 		echo "</br>";
 
 		// On ajoute les points sur la map
-		echo '<script> showMarker('.$res[$i]->latitude.','.$res[$i]->longitude.');</script>';
+		if ($i == 0) {
+			echo '<script> showMarker('.$res[$i]->latitude.','.$res[$i]->longitude.');</script>';
+		}
+
 	}
 
 
@@ -33,3 +43,13 @@
     }
 
 ?>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.rateYoGlobal').each(function(){
+			$(this).rateYo({
+			 rating: $(this).data('note'),
+			 readOnly: true
+		 });
+		})
+	})
+</script>

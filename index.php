@@ -1,6 +1,10 @@
 <?php
 	session_start();
-	header("Access-Control-Allow-Origin: http://localhost:9000");
+	if(!isset($_SESSION['user_id'])) {
+		$redirect = "http://" . $_SERVER['SERVER_ADDR'] . ":" . $_SERVER['SERVER_PORT'] . '/poopupFront/login.php';
+		header('Location: ' . $redirect);
+	}
+
 	include 'header.php';
 ?>
 <body>

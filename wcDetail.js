@@ -53,9 +53,6 @@ $(document).ready(function() {
        error: function(data) {
          $('.button-review').html("Merci d'avoir noté!").prop('disabled', true);
          getNote($('#wc-id').val());
-        //  $("#rateYoGlobal").rateYo({
-        //   rating: $(this).data('note')
-        //   })
        }
       });
     }
@@ -64,18 +61,13 @@ $(document).ready(function() {
 });
 
 function getNote(wc_id) {
-  console.log('yo')
   $.ajax({
     url: 'http://54.218.31.103:5555/wcinfo/' + $('#wc-id').val(),
     type: 'GET',
     success: function(response, status, xhr){
-      var ct = xhr.getResponseHeader("content-type") || "";
-      if (ct.indexOf('html') > -1) {
-        console.log('html');
-      }
-      if (ct.indexOf('json') > -1) {
-        console.log('json');
-      }
+      var data = JSON.parse(response);
+      console.log($("#rateYoGlobal").rateYo("option", "rating", data['wc'][0]['note']));
+      console.log(data['wc'][0]['note']);
     }
   })
 }

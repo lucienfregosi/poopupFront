@@ -18,7 +18,9 @@
       echo "<script type=\"text/javascript\" src=\"wcDetail.js\"></script>";
 			echo "<script type=\"text/javascript\" src=\"js/rater/rater.min.js\"></script>";
 		}
-		else {
+		elseif (strpos($_SERVER['PHP_SELF'], 'lastreview')) {
+			echo "<script type=\"text/javascript\" src=\"lastreview.js\"></script>";
+		} else {
 			echo "<script type=\"text/javascript\" src=\"main.js\"></script>";
 		}
   ?>
@@ -28,7 +30,7 @@
 
 </head>
 
-<header>
+<header class="header">
 	<img class="menu-img" src="img/menu.png" alt="" />
 	<img class="logo" src="img/logo.png" alt="" />
 </header>
@@ -50,5 +52,6 @@
     ?>
 		<a href="lastreview.php"><li class="menu-item">Mes Reviews</li></a>
 		<a href="apropos.php"><li class="menu-item">A propos</li></a>
+		<a href="Logout.php"><li class="menu-item">Logout</li></a>
 	</ul>
 </div>

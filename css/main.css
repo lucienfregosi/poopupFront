@@ -223,6 +223,18 @@ header {
     height: auto;
     margin-left: -100px; }
 
+.header-login .logo {
+  width: 100px;
+  height: auto;
+  margin: 0 !important; }
+
+#login {
+  text-align: center;
+  width: 100%;
+  height: calc(100% - 120px); }
+  #login .button {
+    bottom: 0; }
+
 .slider-menu {
   position: fixed;
   width: 80%;
@@ -230,7 +242,8 @@ header {
   background-color: #000;
   z-index: 3;
   top: 0px;
-  display: none; }
+  display: none;
+  z-index: 1001; }
   .slider-menu .menu-header .menu-img-black {
     display: inline-block;
     width: 100px;
