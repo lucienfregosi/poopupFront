@@ -15,7 +15,7 @@ $(document).ready(function() {
   });
 
   // On affiche le point sur la map
-  var gpoint = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
+  var gpoint = {lat: parseFloat(latitude), lng: parseFloat(longitude)}
    var marker = new google.maps.Marker({position: gpoint, map: mapDetail});
 
    // On centre la carte autour du markeur
