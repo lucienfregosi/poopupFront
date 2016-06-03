@@ -229,6 +229,7 @@ body {
 
 #map {
   height: calc(100% - 120px);
+  display: none;
 }
 
 a {
@@ -337,6 +338,7 @@ input {
   border-radius: 0;
 }
 
+
 // Navigation
 
 .nav-item {
@@ -367,18 +369,103 @@ input {
   }
 }
 
-// Support
+//popup Google
+.gm-style-iw {
+	width: 350px !important;
+	top: 15px !important;
+	left: 0px !important;
+	background-color: #fff;
+	box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+	border: 1px solid rgba(72, 181, 233, 0.6);
+	border-radius: 2px 2px 10px 10px;
+}
+#iw-container {
+	margin-bottom: 10px;
+}
+#iw-container .iw-title {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 22px;
+	font-weight: 400;
+	padding: 10px;
+	background-color: $black;
+	color: white;
+	margin: 0;
+	border-radius: 2px 2px 0 0;
+}
+#iw-container .iw-content {
+	font-size: 13px;
+	line-height: 18px;
+	font-weight: 400;
+	margin-right: 1px;
+	padding: 15px 5px 20px 15px;
+	max-height: 140px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.iw-content img {
+	float: right;
+	margin: 0 5px 5px 10px;
+}
+.iw-subTitle {
+	font-size: 16px;
+	font-weight: 700;
+	padding: 5px 0;
+}
 
-#support-header {
-  background-color: #F9F7F0;
-  height: 150px;
+//spinner
+.spinner-container {
+  width: 100%;
+  height: calc(100% - 120px);
+  position: fixed;
 
-  @include breakpoint (mobile) {
-    margin: 70px 0 0;
-  }
+  .spinner {
+    margin: 100px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    text-align: center;
 
-  @include breakpoint (xlarge) {
-    margin: 40px 0 0;
+    -webkit-animation: sk-rotate 2.0s infinite linear;
+    animation: sk-rotate 2.0s infinite linear;
+
+    .dot1, .dot2 {
+      width: 60%;
+      height: 60%;
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      background-color: #333;
+      border-radius: 100%;
+
+      -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+      animation: sk-bounce 2.0s infinite ease-in-out;
+    }
+
+    .dot2 {
+      top: auto;
+      bottom: 0;
+      -webkit-animation-delay: -1.0s;
+      animation-delay: -1.0s;
+    }
+
+    @-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+    @keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+    @-webkit-keyframes sk-bounce {
+      0%, 100% { -webkit-transform: scale(0.0) }
+      50% { -webkit-transform: scale(1.0) }
+    }
+
+    @keyframes sk-bounce {
+      0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+      } 50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+      }
+    }
+
   }
 }
 
@@ -413,6 +500,164 @@ header {
   text-align: center;
   width: 100%;
   height: calc(100% - 120px);
+
+  .input {
+  	position: relative;
+  	z-index: 1;
+  	display: inline-block;
+  	margin: 1em;
+  	max-width: 650px;
+    height: 100px;
+  	width: calc(100% - 2em);
+  	vertical-align: top;
+  }
+
+  .input__field {
+  	position: relative;
+  	display: block;
+  	float: right;
+  	padding: 0.8em;
+  	width: 80%;
+    height: 100%;
+  	border: none;
+  	border-radius: 0;
+  	background: #f0f0f0;
+  	color: #aaa;
+  	font-weight: bold;
+  	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  	-webkit-appearance: none; /* for box shadows to show on iOS */
+  }
+
+  .input__field:focus {
+  	outline: none;
+  }
+
+  .input__label {
+  	display: inline-block;
+  	float: right;
+  	padding: 0 1em;
+  	width: 40%;
+  	color: #6a7989;
+  	font-weight: bold;
+  	font-size: 70.25%;
+  	-webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+  	-webkit-touch-callout: none;
+  	-webkit-user-select: none;
+  	-khtml-user-select: none;
+  	-moz-user-select: none;
+  	-ms-user-select: none;
+  	user-select: none;
+  }
+
+
+  /* Hoshi */
+  .input--hoshi {
+  	overflow: hidden;
+  }
+
+  .input__field--hoshi {
+  	margin-top: 1em;
+  	padding: 0.85em 0.15em;
+  	width: 100%;
+  	background: transparent;
+  	color: $black;
+  }
+
+  .input__label--hoshi {
+  	position: absolute;
+  	bottom: 0;
+  	left: 0;
+  	padding: 0 0.25em;
+  	width: 100%;
+  	height: calc(100% - 1em);
+  	text-align: left;
+  	pointer-events: none;
+  }
+
+  .input__label-content--hoshi {
+  	position: absolute;
+  }
+
+  .input__label--hoshi::before,
+  .input__label--hoshi::after {
+  	content: '';
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: calc(100% - 10px);
+  	border-bottom: 1px solid #B9C1CA;
+  }
+
+  .input__label--hoshi::after {
+  	margin-top: 2px;
+  	border-bottom: 4px solid red;
+  	-webkit-transform: translate3d(-100%, 0, 0);
+  	transform: translate3d(-100%, 0, 0);
+  	-webkit-transition: -webkit-transform 0.3s;
+  	transition: transform 0.3s;
+  }
+
+  .input__label--hoshi-color-1::after {
+  	border-color: $black;
+  }
+
+  .input__label--hoshi-color-2::after {
+  	border-color: $black;
+  }
+
+  .input__label--hoshi-color-3::after {
+  	border-color: $black;
+  }
+
+  .input__field--hoshi:focus + .input__label--hoshi::after,
+  .input--filled .input__label--hoshi::after {
+  	-webkit-transform: translate3d(0, 0, 0);
+  	transform: translate3d(0, 0, 0);
+  }
+
+  .input__field--hoshi:focus + .input__label--hoshi .input__label-content--hoshi,
+  .input--filled .input__label-content--hoshi {
+  	-webkit-animation: anim-1 0.3s forwards;
+  	animation: anim-1 0.3s forwards;
+  }
+
+  @-webkit-keyframes anim-1 {
+  	50% {
+  		opacity: 0;
+  		-webkit-transform: translate3d(1em, 0, 0);
+  		transform: translate3d(1em, 0, 0);
+  	}
+  	51% {
+  		opacity: 0;
+  		-webkit-transform: translate3d(-1em, -40%, 0);
+  		transform: translate3d(-1em, -40%, 0);
+  	}
+  	100% {
+  		opacity: 1;
+  		-webkit-transform: translate3d(0, -40%, 0);
+  		transform: translate3d(0, -40%, 0);
+  	}
+  }
+
+  @keyframes anim-1 {
+  	50% {
+  		opacity: 0;
+  		-webkit-transform: translate3d(1em, 0, 0);
+  		transform: translate3d(1em, 0, 0);
+  	}
+  	51% {
+  		opacity: 0;
+  		-webkit-transform: translate3d(-1em, -40%, 0);
+  		transform: translate3d(-1em, -40%, 0);
+  	}
+  	100% {
+  		opacity: 1;
+  		-webkit-transform: translate3d(0, -40%, 0);
+  		transform: translate3d(0, -40%, 0);
+  	}
+  }
 
   .button {
     bottom: 0;

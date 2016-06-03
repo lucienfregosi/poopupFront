@@ -49,6 +49,9 @@ function showPosition(position) {
     });
 
     // on appele l'api pour charger les wc
+    $('.spinner-container').fadeOut();
+    $('#map').fadeIn();
+
     getGooglePlaces();
     getOtherWC();
 }
@@ -183,16 +186,22 @@ function addListenerInternal(marker){
               var name = this.name;
               var type = this.type;
             }
-           var info_window_html = '<div id="content">'+
-                        '<h1 id="firstHeading" class="firstHeading">' + name +'</h1>'+
-                        '<div id="bodyContent"><p>'+ type +'</p>'+
-                        '<p>Note :'+ this.note +'</p>'+
-                        '<form action="wc.detail.php" method="POST">' +
-                        '<input type="hidden" name="id" value="'+ this.id +'" ></input>' +
-                        '<input type="hidden" name = "src_id" value="'+ this.src_id +'" ></input>' +
-                        '<input type="submit" value="voir"/>' +
-                        '</form></div>'+
-                        '</div>';
+            var note = (this.note != 'undefined' ? 0 : this.note);
+            var info_window_html = '<div id="iw-container">'+
+                            '<div class="iw-title">' + this.name +'</div>' +
+                            '<div class="iw-content">' +
+                            '<div class="iw-subTitle">Type: '+ this.type +'</div>' +
+                            '<div id="rateYoMap' + this.name.replace(/\s+/g, '').toLowerCase() + '" data-note="' + note +'"></div>' +
+                            '<form class="button" action="wc.detail.php" method="POST">' +
+                            '<input type="hidden" name="name" value="'+ this.name +'" ></input>' +
+                            '<input type="hidden" name= "type" value="'+ this.type +'" ></input>' +
+                            '<input type="hidden" name = "src_id" value="'+ this.src_id +'" ></input>' +
+                            '<input type="hidden" name = "lat" value="'+ this.lat +'" ></input>' +
+                            '<input type="hidden" name = "lng" value="'+ this.lng +'" ></input>' +
+                            '<input type="hidden" name = "adress" value="'+ this.adress +'" ></input>' +
+                            '<input class="button" type="submit" value="voir"/>' +
+                            '</form></div>'+
+                            '</div>';
 
           // Il faudrat envoyer dans le post de voir de l'info window nom, type, et éditer prix, nombre toilette
 
@@ -200,6 +209,11 @@ function addListenerInternal(marker){
           info_window.setPosition(event.latLng);
           // Puis on lui demande de s'ouvrir sur notre carte
           info_window.open(map);
+
+          console.log($("#rateYoMap" + this.name.replace(/\s+/g, '').toLowerCase()).rateYo({
+           rating: $("#rateYoMap" + this.name.replace(/\s+/g, '').toLowerCase()).data('note'),
+           readOnly: true
+         }))
 
     });
 
@@ -210,24 +224,24 @@ function addListenerGoogle(marker){
     marker.addListener('click', function(event) {
         // A voir comment tu veux l'afficher biatch de front end
         // on vient de l'api google on a donc pas de notes
-        var note = 'undef';
-        console.log(this);
+        var note = (this.note != 'undefined' ? 0 : this.note);
 
         // On veut construire une "pop up" avec les informations qu'on a. Par défaut on met une note à 0 ou inconnu et si l'utilisateur le note, on l'enregistre dans notre base
         // il faut construire un submit avec les différentes informartions pour pouvoir soit l'enregistrer si cela vient de gplaces, ou le modifier si c'est notre api interne
-        var info_window_html = '<div id="content">'+
-                        '<h1 id="firstHeading" class="firstHeading">' + this.name +'</h1>'+
-                        '<div id="bodyContent"><p>'+ this.type +'</p>'+
-                        '<p>Note :'+ note +'</p>'+
-                        '<form action="wc.detail.php" method="POST">' +
+        var info_window_html = '<div id="iw-container">'+
+                        '<div class="iw-title">' + this.name +'</div>' +
+                        '<div class="iw-content">' +
+                        '<div class="iw-subTitle">Type: '+ this.type +'</div>' +
+                        '<div id="rateYoMap' + this.name.replace(/\s+/g, '').toLowerCase() + '" data-note="' + note +'"></div>' +
+                        '<p><form action="wc.detail.php" method="POST">' +
                         '<input type="hidden" name="name" value="'+ this.name +'" ></input>' +
                         '<input type="hidden" name= "type" value="'+ this.type +'" ></input>' +
                         '<input type="hidden" name = "src_id" value="'+ this.src_id +'" ></input>' +
                         '<input type="hidden" name = "lat" value="'+ this.lat +'" ></input>' +
                         '<input type="hidden" name = "lng" value="'+ this.lng +'" ></input>' +
                         '<input type="hidden" name = "adress" value="'+ this.adress +'" ></input>' +
-                        '<input type="submit" value="voir"/>' +
-                        '</form></div>'+
+                        '<input class="button" type="submit" value="voir"/>' +
+                        '</form><p></div>'+
                         '</div>';
 
 
@@ -238,7 +252,10 @@ function addListenerGoogle(marker){
         // Puis on lui demande de s'ouvrir sur notre carte
         info_window.open(map);
 
-
+        console.log($("#rateYoMap" + this.name.replace(/\s+/g, '').toLowerCase()).rateYo({
+         rating: $("#rateYoMap" + this.name.replace(/\s+/g, '').toLowerCase()).data('note'),
+         readOnly: true
+       }))
     });
 
 }
