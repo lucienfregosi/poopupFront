@@ -49,10 +49,10 @@ function showPosition(position) {
     });
 
     // on appele l'api pour charger les wc
-    $('.spinner-container').fadeOut();
-    $('#map').fadeIn();
+
 
     getGooglePlaces();
+    $('.spinner-container').fadeOut();
     getOtherWC();
 }
 

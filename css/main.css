@@ -81,8 +81,7 @@ body {
       width: 100%; } }
 
 #map {
-  height: calc(100% - 120px);
-  display: none; }
+  height: calc(100% - 120px); }
 
 a {
   color: #333; }
@@ -242,7 +241,10 @@ input {
 
 .spinner-container {
   width: 100%;
-  height: calc(100% - 120px); }
+  height: calc(100% - 120px);
+  position: fixed;
+  z-index: 9999;
+  background-color: white; }
   .spinner-container .spinner {
     margin: 100px auto;
     width: 40px;
